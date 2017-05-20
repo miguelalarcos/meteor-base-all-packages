@@ -4,17 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Links, schema } from './links.js';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
-
-const validateData = (data, schema) => {
-  let error = false;
-  for(let key of Object.keys(schema)){
-    if(schema[key](data[key]) != true){
-      error = true;
-      break;
-    }
-  }
-  if(error) throw new ValidationError([{msg: 'error en la validacion'}]);
-}
+import { validateData } from '../../lib/validation.js';
 
 const linksInsert = new ValidatedMethod({
   name: 'links.insert',

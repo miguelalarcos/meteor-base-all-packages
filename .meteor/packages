@@ -37,3 +37,4 @@ accounts-password
 nimble:restivus
 accounts-ui
 mdg:validated-method
+mdg:validation-error
