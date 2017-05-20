@@ -36,3 +36,4 @@ accounts-base
 accounts-password
 nimble:restivus
 accounts-ui
+mdg:validated-method

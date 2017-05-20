@@ -2,17 +2,36 @@
 
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Links } from './links.js';
+import { Links, schema } from './links.js';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
-Meteor.methods({
-  'links.insert'(title, url) {
-    check(url, String);
-    check(title, Number);
+const validateData = (data, schema) => {
+  let error = false;
+  for(let key of Object.keys(schema)){
+    if(schema[key](data[key]) != true){
+      error = true;
+      break;
+    }
+  }
+  if(error) throw new ValidationError([{msg: 'error en la validacion'}]);
+}
 
+const linksInsert = new ValidatedMethod({
+  name: 'links.insert',
+
+  validate({title, url}) {
+    check({title, url}, {
+      url: String,
+      title: Number
+    });
+    validateData({title, url}, schema);
+  },
+
+  run({title, url}){
     return Links.insert({
       url,
       title,
       createdAt: new Date(),
     });
-  },
+  }
 });

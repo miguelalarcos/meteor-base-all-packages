@@ -1,4 +1,4 @@
-import { Links } from '/imports/api/links/links.js';
+import { Links, schema } from '/imports/api/links/links.js';
 import { Meteor } from 'meteor/meteor';
 import './info.html';
 import Decimal from 'decimal.js';
@@ -25,16 +25,11 @@ Template.info.helpers({
 Template.info.events({
   'documentSubmit': function (e, tmpl, doc) {
       aux = Object.assign({}, doc, {title: new Decimal(doc.title).toNumber()});
-      Meteor.call('links.insert', aux.title, aux.url);      
+      Meteor.call('links.insert', {title: aux.title, url: aux.url});      
       tmpl.form.doc({});
     }
 });
 
 Forms.mixin(Template.info, {
-  schema : {
-    title: function(val){
-      val = val && new Decimal(val).toNumber();
-      return (_.isNumber(val) && val > 3) || 'title debe ser un número mayor de 3';
-    }
-  }
+  schema : schema
 });
