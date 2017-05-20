@@ -1,0 +1,18 @@
+<template name="App_body">
+  <div class="wrapper">
+    <header class="center">
+      <span>Header</span>
+    </header>
+    <div class="container">
+      <aside class="center">
+        <span>{{>menu}}</span>
+      </aside>
+      <section class="center">
+        {{> Template.dynamic template=main}}
+      </section>
+    </div>
+    <footer class="center">
+      <span>Footer</span>
+    </footer>
+  </div>
+</template>

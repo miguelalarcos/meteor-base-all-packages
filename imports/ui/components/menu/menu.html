@@ -1,0 +1,8 @@
+<template name="menu">
+  <div class="list-group">
+    <a href="#" class="menu-home list-group-item">Home</a>
+    {{#each menu_item}}
+      <a href="#" path={{path}} go={{go}} class="menu-{{type}} list-group-item">{{desc}}</a>
+    {{/each}}
+  </div>  
+</template>  

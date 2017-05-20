@@ -1,0 +1,11 @@
+<template name="App_chart">
+  <div>hello world</div>
+  <div class="main">
+    <a id="generate_chart" href="#" class="btn btn-default">create</a>
+    <div id='chart'></div>      
+    {{#if loading}}
+        <div>loading ...</div>    
+        {{> spin }}
+    {{/if}} 
+  </div> 
+</template>
